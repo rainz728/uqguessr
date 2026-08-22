@@ -1,6 +1,8 @@
 import { useState } from "react";
 import GameScreen from "@/components/GameScreen/GameScreen";
-import { calculateRoundScore } from "@/lib/scoring";
+import {
+  calculateRoundScore,
+} from "@shared/lib/scoring.js";
 
 const CLIENT_ID = "offline-player";
 
