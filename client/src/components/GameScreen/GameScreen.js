@@ -1,18 +1,24 @@
 import Viewer from "@/components/PanoramaViewer/viewer";
-import { calculateRoundScore } from "@/lib/scoring";
 import dynamic from "next/dynamic";
+
 import {
   calculateRoundScore,
 } from "@shared/lib/scoring.js";
 
 // Leaflet maps must be loaded in the browser.
 const GuessMap = dynamic(
-  () => import("@/components/MapHandler/GuessMap"),
+  () =>
+    import(
+      "@/components/MapHandler/GuessMap"
+    ),
   { ssr: false }
 );
 
 const RevealMap = dynamic(
-  () => import("@/components/MapHandler/RevealMap"),
+  () =>
+    import(
+      "@/components/MapHandler/RevealMap"
+    ),
   { ssr: false }
 );
 
@@ -47,7 +53,9 @@ export default function GameScreen({
 
       {/* Player list */}
       <section className="card">
-        <span className="eyebrow">PLAYERS</span>
+        <span className="eyebrow">
+          PLAYERS
+        </span>
 
         <ul className="playerList">
           {game.players.map((player) => (
@@ -55,10 +63,14 @@ export default function GameScreen({
               key={player.clientId}
               className="playerRow"
             >
-              <div className="rankBubble">#</div>
+              <div className="rankBubble">
+                #
+              </div>
 
               <div className="playerIdentity">
-                <strong>{player.nickname}</strong>
+                <strong>
+                  {player.nickname}
+                </strong>
 
                 <span className="playerRoundStatus">
                   {player.hasGuessed
@@ -97,12 +109,15 @@ export default function GameScreen({
         </span>
 
         <Viewer
-          view={{
-            panoramaUrl: "/panoramas/scene1.jpg",
-            heading: 0,
-            pitch: 0,
-            id: "test",
-          }}
+          view={
+            game.currentView ?? {
+              panoramaUrl:
+                "/panoramas/scene1.jpg",
+              heading: 0,
+              pitch: 0,
+              id: "offline-test",
+            }
+          }
         />
       </section>
 
@@ -120,7 +135,8 @@ export default function GameScreen({
             disabled={Boolean(
               game.players.find(
                 (player) =>
-                  player.clientId === clientId
+                  player.clientId ===
+                  clientId
               )?.hasGuessed
             )}
             onSubmit={(guess) =>
@@ -139,48 +155,58 @@ export default function GameScreen({
         game.reveal && (
           <section
             className="card"
-            style={{ marginTop: "2rem" }}
+            style={{
+              marginTop: "2rem",
+            }}
           >
             <span className="eyebrow">
               ROUND RESULTS
             </span>
 
-            <RevealMap reveal={game.reveal} />
+            <RevealMap
+              reveal={game.reveal}
+            />
 
             <div className="roundScores">
-              {game.reveal.guesses.map((guess) => {
-                const result =
-                  calculateRoundScore(
-                    game.reveal.answer,
-                    guess
-                  );
+              {game.reveal.guesses.map(
+                (guess) => {
+                  const result =
+                    calculateRoundScore(
+                      game.reveal.answer,
+                      guess
+                    );
 
-                const isCurrentPlayer =
-                  guess.clientId === clientId;
+                  const isCurrentPlayer =
+                    guess.clientId ===
+                    clientId;
 
-                return (
-                  <div
-                    className="scoreCard"
-                    key={guess.clientId}
-                  >
-                    <div>
-                      <strong>
-                        {guess.nickname}
-                        {isCurrentPlayer ? " (You)" : ""}
-                      </strong>
+                  return (
+                    <div
+                      className="scoreCard"
+                      key={guess.clientId}
+                    >
+                      <div>
+                        <strong>
+                          {guess.nickname}
+                          {isCurrentPlayer
+                            ? " (You)"
+                            : ""}
+                        </strong>
 
-                      <span>
-                        {result.distanceM} m from
-                        the answer
-                      </span>
+                        <span>
+                          {result.distanceM}{" "}
+                          m from the answer
+                        </span>
+                      </div>
+
+                      <b>
+                        {result.score.toLocaleString()}{" "}
+                        pts
+                      </b>
                     </div>
-
-                    <b>
-                      {result.score.toLocaleString()} pts
-                    </b>
-                  </div>
-                );
-              })}
+                  );
+                }
+              )}
             </div>
           </section>
         )}
