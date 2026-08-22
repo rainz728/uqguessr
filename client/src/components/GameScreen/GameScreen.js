@@ -1,3 +1,5 @@
+import Viewer from "@/components/PanoramaViewer/viewer";
+
 export default function GameScreen({ game, clientId, send }) {
   return (
     <main className="pageShell">
@@ -31,6 +33,20 @@ export default function GameScreen({ game, clientId, send }) {
           Leave game
         </button>
       </div>
+
+      {/* panorama viewer*/}
+      <section className="card" style={{ marginTop: "2rem" }}>
+        <span className="eyebrow">PANORAMA VIEWER</span>
+
+        <Viewer
+          view={{
+            panoramaUrl: "/panoramas/scene1.jpg",
+            heading: 0,
+            pitch: 0,
+            id: "test"
+          }}
+        />
+      </section>
     </main>
   );
 }
