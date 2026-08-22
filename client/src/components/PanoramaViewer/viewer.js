@@ -24,7 +24,7 @@ function normaliseYawDifference(value) {
 
 const viewer = pannellum.viewer("panorama", {
   type: "equirectangular",
-  panorama: "panoramas/scene1.jpg",
+  panorama: "panoramas/loc3.jpg",
   autoLoad: true,
 
   // Start facing a random direction
