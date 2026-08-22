@@ -1,5 +1,8 @@
 import Viewer from "@/components/PanoramaViewer/viewer";
 import dynamic from "next/dynamic";
+import {
+  calculateRoundScore,
+} from "@shared/lib/scoring.js";
 
 // Leaflet maps dynamically imported 
 const GuessMap = dynamic(

@@ -7,8 +7,16 @@ import {
   Popup,
   TileLayer,
 } from "react-leaflet";
-import gameConfig from "@/lib/GameConfig";
-import { UQ_ST_LUCIA_BOUNDARY } from "@/lib/UQCampusBoundary";
+
+import gameConfig from "@shared/lib/GameConfig.js";
+
+import {
+  UQ_ST_LUCIA_BOUNDARY,
+} from "@shared/lib/UQCampusBoundary.js";
+
+import {
+  calculateRoundScore,
+} from "@shared/lib/scoring.js";
 
 export default function RevealMap({ reveal }) {
   if (!reveal?.answer) return null;
