@@ -1,0 +1,311 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>UQGuessr</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.css"
+  >
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/pannellum@2.5.7/build/pannellum.js">
+  </script>
+
+  <style>
+
+    :root {
+      --uq-purple: #51247A;
+      --uq-light: #F3EDF7;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #panorama {
+      width: 100%;
+      height: 100%;
+    }
+
+
+    /* ---------------------------
+       MAP PLACEHOLDER
+    --------------------------- */
+
+    #mapBox {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+
+      width: 220px;
+      height: 220px;
+
+      z-index: 1000;
+
+      background: var(--uq-light);
+
+      border: 4px solid var(--uq-purple);
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.32);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      color: var(--uq-purple);
+      font-weight: bold;
+
+      transition:
+        width 0.3s ease,
+        height 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    #mapBox:hover {
+      width: 500px;
+      height: 500px;
+
+      box-shadow:
+        0 8px 28px rgba(0, 0, 0, 0.42);
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <div id="panorama"></div>
+
+  <div id="mapBox">
+    MAP
+  </div>
+
+
+  <script>
+
+    /* ---------------------------
+       VIEW SETTINGS
+    --------------------------- */
+
+    const MIN_HFOV = 25;
+    const MAX_HFOV = 110;
+    const START_HFOV = 100;
+
+    const START_YAW =
+      Math.random() * 360 - 180;
+
+    const START_PITCH = 0;
+
+    // Vertical movement limits
+    const MIN_PITCH = -45;
+    const MAX_PITCH = 40;
+
+    // Lower number = slower trackpad zoom
+    const WHEEL_SENSITIVITY = 0.0075;
+
+    const DOUBLE_CLICK_ZOOM = 1.6;
+    const ANIMATION_TIME = 400;
+
+
+    /* ---------------------------
+       HELPERS
+    --------------------------- */
+
+    function clampHfov(value) {
+      return Math.max(
+        MIN_HFOV,
+        Math.min(MAX_HFOV, value)
+      );
+    }
+
+    function clampPitch(value) {
+      return Math.max(
+        MIN_PITCH,
+        Math.min(MAX_PITCH, value)
+      );
+    }
+
+    function normaliseYawDifference(value) {
+
+      while (value > 180) value -= 360;
+      while (value < -180) value += 360;
+
+      return value;
+    }
+
+
+    /* ---------------------------
+       PANORAMA
+    --------------------------- */
+
+    const viewer = pannellum.viewer(
+      "panorama",
+      {
+        type: "equirectangular",
+
+        panorama:
+          "panoramas/scene1.jpg",
+
+        autoLoad: true,
+
+        yaw: START_YAW,
+        pitch: START_PITCH,
+        hfov: START_HFOV,
+
+        minPitch: MIN_PITCH,
+        maxPitch: MAX_PITCH,
+
+        minHfov: MIN_HFOV,
+        maxHfov: MAX_HFOV,
+
+        // We handle trackpad zoom ourselves.
+        mouseZoom: false,
+
+        // Hide all Pannellum controls.
+        showControls: false,
+        showZoomCtrl: false,
+        showFullscreenCtrl: false
+      }
+    );
+
+
+    const panoramaElement =
+      document.getElementById("panorama");
+
+
+    /* ---------------------------
+       KEEP ZOOM UNDER CURSOR
+    --------------------------- */
+
+    function recentre(before, after) {
+
+      const pitchDifference =
+        before[0] - after[0];
+
+      const yawDifference =
+        normaliseYawDifference(
+          before[1] - after[1]
+        );
+
+      viewer.setPitch(
+        clampPitch(
+          viewer.getPitch() +
+          pitchDifference
+        ),
+        false
+      );
+
+      viewer.setYaw(
+        viewer.getYaw() +
+        yawDifference,
+        false
+      );
+    }
+
+
+    /* ---------------------------
+       TRACKPAD / MOUSE ZOOM
+    --------------------------- */
+
+    panoramaElement.addEventListener(
+      "wheel",
+      function (event) {
+
+        event.preventDefault();
+
+        const before =
+          viewer.mouseEventToCoords(event);
+
+        let delta = event.deltaY;
+
+        if (event.deltaMode === 1) {
+          delta *= 16;
+        }
+
+        if (event.deltaMode === 2) {
+          delta *= 100;
+        }
+
+        delta =
+          Math.max(
+            -60,
+            Math.min(60, delta)
+          );
+
+        const zoomFactor =
+          Math.exp(
+            delta *
+            WHEEL_SENSITIVITY
+          );
+
+        viewer.setHfov(
+          clampHfov(
+            viewer.getHfov() *
+            zoomFactor
+          ),
+          false
+        );
+
+        recentre(
+          before,
+          viewer.mouseEventToCoords(event)
+        );
+      },
+
+      { passive: false }
+    );
+
+
+    /* ---------------------------
+       DOUBLE-CLICK ZOOM
+    --------------------------- */
+
+    panoramaElement.addEventListener(
+      "dblclick",
+      function (event) {
+
+        event.preventDefault();
+
+        const point =
+          viewer.mouseEventToCoords(event);
+
+        viewer.setPitch(
+          clampPitch(point[0]),
+          ANIMATION_TIME
+        );
+
+        viewer.setYaw(
+          point[1],
+          ANIMATION_TIME
+        );
+
+        viewer.setHfov(
+          clampHfov(
+            viewer.getHfov() /
+            DOUBLE_CLICK_ZOOM
+          ),
+          ANIMATION_TIME
+        );
+      }
+    );
+
+  </script>
+
+</body>
+
+</html>
+```
