@@ -6,8 +6,11 @@ import {
   TileLayer,
   useMapEvents,
 } from "react-leaflet";
-import gameConfig from "@/lib/GameConfig";
-import { UQ_ST_LUCIA_BOUNDARY } from "@/lib/UQCampusBoundary";
+import gameConfig from "@shared/lib/GameConfig.js";
+
+import {
+  UQ_ST_LUCIA_BOUNDARY,
+} from "@shared/lib/UQCampusBoundary.js";
 
 function ClickHandler({ onPick }) {
   useMapEvents({

@@ -1,0 +1,14 @@
+{
+  "name": "uqguessr-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/ws-server.mjs",
+    "start": "node src/ws-server.mjs"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "ws": "^8.18.3"
+  }
+}
