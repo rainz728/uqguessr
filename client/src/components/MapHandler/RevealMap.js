@@ -9,6 +9,7 @@ import {
 } from "react-leaflet";
 import gameConfig from "@/lib/GameConfig";
 import { UQ_ST_LUCIA_BOUNDARY } from "@/lib/UQCampusBoundary";
+import { calculateRoundScore } from "@/lib/scoring";
 
 export default function RevealMap({ reveal }) {
   if (!reveal?.answer) return null;
@@ -52,11 +53,18 @@ export default function RevealMap({ reveal }) {
         </CircleMarker>
         {reveal.guesses.map((g) => {
           const guess = [g.lat, g.lng];
+          const result = calculateRoundScore(reveal.answer, g);
+
           return (
             <Fragment key={g.clientId}>
               <Polyline
                 positions={[guess, answer]}
-                pathOptions={{ color: "#51247a", weight: 2, dashArray: "6 7", opacity: 0.7 }}
+                pathOptions={{
+                  color: "#51247a",
+                  weight: 2,
+                  dashArray: "6 7",
+                  opacity: 0.7,
+                }}
               />
               <CircleMarker
                 center={guess}
@@ -69,7 +77,7 @@ export default function RevealMap({ reveal }) {
                 }}
               >
                 <Popup>
-                  {g.nickname}: {g.distanceM} m · {g.score} pts
+                  {g.nickname}: {result.distanceM} m · {result.score} pts
                 </Popup>
               </CircleMarker>
             </Fragment>
