@@ -1,0 +1,45 @@
+/* HomeScreen layout */
+.homePage {
+  padding-top: 64px;
+}
+
+/* Hero section */
+.hero {
+  max-width: 780px;
+  margin-bottom: 36px;
+}
+
+.hero h1 {
+  margin: 8px 0 12px;
+  font-size: clamp(42px, 8vw, 84px);
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+/* Branding */
+.brandMark {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 22px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+  background: linear-gradient(135deg, rgba(98,212,255,.2), rgba(138,125,255,.18));
+}
+
+/* Responsive */
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: 52px;
+  }
+}
