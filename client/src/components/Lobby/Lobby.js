@@ -3,29 +3,29 @@ import QrJoin from "./QrJoin";
 
 export default function Lobby({ game, send }) {
   return (
-    <main className="pageShell lobbyPage">
-      <header className="lobbyHeader">
+    <main className="pageShell lobbyPage minecraftScreen">
+      <header className="lobbyHeader minecraftTopbar">
         <div>
-          <span className="eyebrow">MULTIPLAYER LOBBY</span>
-          <h1>Room {game.code}</h1>
+          <span className="eyebrow">MULTIPLAYER</span>
+          <h1>{game.isHost ? "Local Server" : "Server Joined"}</h1>
           <p className="muted">
             {game.isHost
-              ? "Share the code, wait for everyone to join, then start the game."
-              : "You’re in. Waiting for the host to start the first round."}
+              ? "Share the room code, wait for everyone to join, then start the game."
+              : "Connected. Waiting for the host to start the first round."}
           </p>
         </div>
 
-        <div className="lobbyPlayerCount">
-          <strong>{game.players.length}</strong>
-          <span>/ {game.maxPlayers} players</span>
+        <div className="lobbyRoomBadge">
+          <span>ROOM</span>
+          <strong>{game.code}</strong>
         </div>
       </header>
 
-      <div className="lobbyGrid">
-        <section className="card lobbyJoinCard">
+      <div className="lobbyGrid minecraftWindow">
+        <section className="lobbyJoinCard">
           <div className="panelHeading">
             <div>
-              <span className="eyebrow">JOIN ROOM</span>
+              <span className="eyebrow">JOIN SERVER</span>
               <h2>{game.isHost ? "Scan to join" : "Room details"}</h2>
             </div>
           </div>
@@ -33,12 +33,13 @@ export default function Lobby({ game, send }) {
           <QrJoin code={game.code} />
         </section>
 
-        <section className="card lobbyPlayersCard">
+        <section className="lobbyPlayersCard">
           <div className="panelHeading">
             <div>
               <span className="eyebrow">PLAYERS</span>
-              <h2>Ready to play</h2>
+              <h2>Server list</h2>
             </div>
+
             <span className="playerCapacity">
               {game.players.length}/{game.maxPlayers}
             </span>
@@ -49,15 +50,20 @@ export default function Lobby({ game, send }) {
           <div className="roomActions lobbyActions">
             {game.isHost ? (
               <button
-                className="primaryButton"
+                className="minecraftButton compactMinecraftButton"
                 type="button"
                 disabled={game.players.length < 1}
-                onClick={() => send({ type: "start_game", code: game.code })}
+                onClick={() =>
+                  send({
+                    type: "start_game",
+                    code: game.code,
+                  })
+                }
               >
-                Start game
+                Start Game
               </button>
             ) : (
-              <div className="waitingChip">Waiting for host…</div>
+              <div className="waitingChip">Waiting for host...</div>
             )}
           </div>
         </section>

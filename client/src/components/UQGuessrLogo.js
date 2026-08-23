@@ -11,3 +11,4 @@ export default function UQGuessrLogo({ compact = false, menu = false }) {
     </div>
   );
 }
+  

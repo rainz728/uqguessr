@@ -1,83 +1,117 @@
-/* ===========================
-   Global variables
-   =========================== */
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 :root {
-  --bg: #090c13;
-  --panel: #111724;
-  --panel-2: #171f2e;
-  --text: #f6f7fb;
-  --muted: #9aa5b7;
-  --border: #263246;
-  --accent: #62d4ff;
-  --accent-2: #8a7dff;
-  --danger: #ff7b85;
+  --bg: #171717;
+  --panel: rgba(35, 35, 35, .86);
+  --panel-2: rgba(60, 60, 60, .78);
+  --text: #ffffff;
+  --muted: #d0d0d0;
+  --border: #202020;
+  --accent: #87d441;
+  --accent-2: #b9ef75;
+  --danger: #ff8b8b;
+  --mc-font: "Press Start 2P", "Courier New", monospace;
+  --mc-yellow: #ffe100;
 }
 
-/* ===========================
-   Global resets
-   =========================== */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html, body, #__next {
+html,
+body,
+#__next {
   margin: 0;
   min-height: 100%;
 }
 
+html {
+  background: #111;
+}
+
 body {
-  background: radial-gradient(circle at 20% 0%, #142039 0%, var(--bg) 38%, #07090e 100%);
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, .15), rgba(0, 0, 0, .48)),
+    url("/ui/minecraft-campus-bg.png") center / cover fixed no-repeat;
   color: var(--text);
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--mc-font);
+  image-rendering: auto;
 }
 
-button, input { font: inherit; }
-button { cursor: pointer; }
-button:disabled { cursor: not-allowed; opacity: .45; }
+button,
+input {
+  font: inherit;
+}
 
-/* ===========================
-   Shared layout utilities
-   =========================== */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(.8);
+  opacity: .5;
+}
+
 .pageShell {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1240px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 48px 0 72px;
+  padding: 26px 0 60px;
 }
 
-.twoCol {
+.twoCol,
+.entryGrid,
+.revealGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
-.entryGrid { max-width: 900px; }
-.revealGrid { grid-template-columns: 1.35fr .65fr; }
-
-/* ===========================
-   Shared typography
-   =========================== */
 .eyebrow {
   display: inline-block;
-  color: #aeb9ca;
-  letter-spacing: .16em;
-  font-size: 12px;
-  font-weight: 800;
+  color: var(--mc-yellow);
+  font-size: 9px;
+  letter-spacing: .08em;
+  line-height: 1.5;
+  text-shadow: 2px 2px 0 #111;
 }
 
-.muted { color: var(--muted); line-height: 1.5; }
-.smallText { font-size: 13px; }
+.muted {
+  color: var(--muted);
+  font-family: var(--mc-font);
+  font-size: 10px;
+  line-height: 1.7;
+  text-shadow: 2px 2px 0 #111;
+}
 
-/* ===========================
-   Shared card component
-   =========================== */
+.smallText {
+  font-size: 10px;
+}
+
+.card,
+.minecraftWindow {
+  border: 3px solid #1c1c1c;
+  border-top-color: #bcbcbc;
+  border-left-color: #bcbcbc;
+  background: rgba(74, 74, 74, .84);
+  box-shadow:
+    inset -3px -3px 0 rgba(0, 0, 0, .28),
+    inset 3px 3px 0 rgba(255, 255, 255, .08),
+    0 5px 0 rgba(0, 0, 0, .34);
+  border-radius: 0;
+}
+
 .card {
-  background: rgba(17,23,36,.92);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 24px;
+  padding: 20px;
 }
 
-.card h2 {
-  margin: 7px 0 8px;
-  font-size: 26px;
+.card h2,
+.panelHeading h2 {
+  margin: 8px 0;
+  color: #fff;
+  font-size: 17px;
+  line-height: 1.4;
+  text-shadow: 3px 3px 0 #222;
 }
 
 .panelHeading {
@@ -85,154 +119,169 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
-/* ===========================
-   Shared buttons
-   =========================== */
 .primaryButton,
-.secondaryButton {
-  border: 0;
-  border-radius: 14px;
-  min-height: 48px;
-  padding: 0 20px;
-  font-weight: 800;
-  transition: transform .12s ease, opacity .12s ease;
+.secondaryButton,
+.minecraftButton {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #e0e0e0;
+  border-left-color: #e0e0e0;
+  border-right-color: #4a4a4a;
+  border-bottom-color: #4a4a4a;
+  border-radius: 0;
+  background: linear-gradient(#a5a5a5, #777);
+  color: #fff;
+  font-family: var(--mc-font);
+  font-size: 11px;
+  text-shadow: 2px 2px 0 #333;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .15);
 }
 
-.primaryButton {
-  background: linear-gradient(135deg, var(--accent), #8adfff);
-  color: #071018;
+.primaryButton:hover:not(:disabled),
+.secondaryButton:hover:not(:disabled),
+.minecraftButton:hover:not(:disabled) {
+  outline: 2px solid #fff;
+  outline-offset: -6px;
+  filter: brightness(1.08);
 }
 
-.secondaryButton {
-  background: #202a3b;
-  color: var(--text);
-  border: 1px solid #344158;
+.primaryButton:active:not(:disabled),
+.secondaryButton:active:not(:disabled),
+.minecraftButton:active:not(:disabled) {
+  transform: translateY(2px);
+  border-top-color: #4a4a4a;
+  border-left-color: #4a4a4a;
 }
 
-.primaryButton:not(:disabled):active,
-.secondaryButton:not(:disabled):active {
-  transform: translateY(1px);
+.compact,
+.compactMinecraftButton {
+  min-height: 38px;
+  padding: 0 12px;
+  font-size: 9px;
 }
 
-.compact { min-height: 42px; padding: 0 15px; }
-.fullButton { width: 100%; margin-top: 16px; }
-
-/* ===========================
-   Shared form elements
-   =========================== */
-.fieldLabel {
-  display: block;
-  margin: 16px 0 7px;
-  color: #c5cedc;
-  font-size: 13px;
-  font-weight: 750;
-}
-
-.textInput {
+.fullButton {
   width: 100%;
-  min-height: 48px;
-  border-radius: 13px;
-  border: 1px solid var(--border);
-  background: #0b101a;
-  color: var(--text);
-  padding: 0 14px;
-  outline: none;
 }
 
-.textInput:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(98,212,255,.12);
+.fieldLabel,
+.minecraftJoinFields label {
+  display: block;
+  margin: 10px 0 7px;
+  color: #fff;
+  font-size: 10px;
+  text-shadow: 2px 2px 0 #111;
 }
 
-.codeInput {
-  letter-spacing: .18em;
-  font-size: 20px;
-  font-weight: 900;
+.textInput,
+.minecraftInput {
+  width: 100%;
+  min-height: 46px;
+  border: 3px solid #252525;
+  border-top-color: #505050;
+  border-left-color: #505050;
+  border-right-color: #d7d7d7;
+  border-bottom-color: #d7d7d7;
+  border-radius: 0;
+  outline: 0;
+  background: rgba(0, 0, 0, .68);
+  color: #fff;
+  padding: 0 13px;
+  font-family: var(--mc-font);
+  font-size: 11px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+}
+
+.textInput:focus,
+.minecraftInput:focus {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px #1d1d1d;
+}
+
+.textInput::placeholder,
+.minecraftInput::placeholder {
+  color: rgba(255, 255, 255, .65);
+}
+
+.codeInput,
+.minecraftCodeInput {
   text-transform: uppercase;
+  letter-spacing: .18em;
 }
 
-/* ===========================
-   Shared connection bar
-   =========================== */
-.connectionBar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  color: var(--muted);
-  font-size: 13px;
+.errorBanner {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 2px solid #1d1d1d;
+  background: rgba(126, 30, 30, .9);
+  color: #fff;
+  font-size: 9px;
+  line-height: 1.5;
+  text-shadow: 1px 1px 0 #000;
 }
 
 .statusDot {
   width: 9px;
   height: 9px;
-  border-radius: 50%;
-  background: #667085;
+  border-radius: 0;
+  background: #777;
 }
 
 .statusDot.online {
-  background: #5dd39e;
-  box-shadow: 0 0 0 5px rgba(93,211,158,.09);
+  background: #7bda47;
 }
 
-/* ===========================
-   Shared error banner
-   =========================== */
-.errorBanner {
-  margin-top: 14px;
-  max-width: 900px;
-  background: rgba(255,123,133,.1);
-  border: 1px solid rgba(255,123,133,.35);
-  color: #ffc1c6;
-  padding: 12px 14px;
-  border-radius: 12px;
-}
-
-/* ===========================
-   Shared QR card
-   =========================== */
 .qrCard {
   display: flex;
   align-items: center;
-  gap: 24px;
-  min-height: 210px;
+  gap: 18px;
+}
+
+.qrCodeFrame,
+.qrCard svg {
+  flex: 0 0 auto;
+  background: #d8d8d8;
+  border-radius: 0;
 }
 
 .qrCard svg {
-  background: white;
-  border-radius: 14px;
-  padding: 8px;
-  flex: 0 0 auto;
+  padding: 6px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #fff;
+  border-left-color: #fff;
 }
 
 .roomCode {
-  margin-top: 5px;
-  font-size: clamp(42px, 7vw, 68px);
-  font-weight: 950;
-  letter-spacing: .12em;
+  margin-top: 8px;
+  color: #fff;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1;
+  letter-spacing: .13em;
+  text-shadow: 4px 4px 0 #222;
 }
 
-/* ===========================
-   Shared player list
-   =========================== */
 .playerList {
   display: grid;
-  gap: 9px;
+  gap: 8px;
 }
 
 .playerRow {
   display: grid;
-  grid-template-columns: 38px minmax(0,1fr) auto auto;
-  gap: 12px;
+  grid-template-columns: 38px minmax(0, 1fr) auto auto;
+  gap: 10px;
   align-items: center;
   min-height: 58px;
   padding: 8px 10px;
-  background: #0d1320;
-  border: 1px solid #222d3f;
-  border-radius: 14px;
+  border: 2px solid #292929;
+  border-top-color: #8b8b8b;
+  border-left-color: #8b8b8b;
+  border-radius: 0;
+  background: rgba(38, 38, 38, .72);
 }
 
 .rankBubble {
@@ -240,47 +289,96 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   height: 32px;
   display: grid;
   place-items: center;
-  background: #1c2739;
-  border-radius: 10px;
-  color: #c9d3e2;
-  font-weight: 900;
+  border: 2px solid #1f1f1f;
+  border-top-color: #bdbdbd;
+  border-left-color: #bdbdbd;
+  border-radius: 0;
+  background: #666;
+  color: #fff;
+  font-size: 10px;
+  text-shadow: 1px 1px 0 #222;
 }
 
 .playerIdentity {
-  min-width: 0;
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  gap: 5px;
 }
 
 .playerIdentity strong {
   overflow: hidden;
+  color: #fff;
+  font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  text-shadow: 2px 2px 0 #111;
+}
+
+.playerIdentity span {
+  color: #cfcfcf;
+  font-size: 8px;
+}
+
+.playerRoundStatus {
+  color: #ffe878;
+  font-size: 8px;
+}
+
+.playerRoundStatus.submitted {
+  color: #99ef64;
 }
 
 .scoreNumber {
-  font-variant-numeric: tabular-nums;
+  color: #a7f36a;
+  font-size: 10px;
+  text-shadow: 2px 2px 0 #203312;
 }
 
-/* ===========================
-   Shared media queries
-   =========================== */
-@media (max-width: 900px) {
+.emptyPlayerState {
+  padding: 18px;
+  border: 2px dashed #777;
+  color: #ddd;
+  text-align: center;
+}
+
+.emptyPlayerState strong,
+.emptyPlayerState span {
+  display: block;
+}
+
+.emptyPlayerState strong {
+  margin-bottom: 8px;
+  font-size: 10px;
+}
+
+.emptyPlayerState span {
+  color: #bbb;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.roomActions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.waitingChip,
+.playerCapacity,
+.resultBadge {
+  padding: 8px 10px;
+  border: 2px solid #1d1d1d;
+  background: rgba(0, 0, 0, .42);
+  color: #fff;
+  font-size: 9px;
+  text-shadow: 1px 1px 0 #111;
+}
+
+@media (max-width: 700px) {
   .pageShell {
-    width: min(100% - 20px, 760px);
-    padding-top: 28px;
-  }
-
-  .twoCol,
-  .revealGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .card {
-    border-radius: 18px;
-    padding: 18px;
+    width: min(100% - 18px, 1240px);
+    padding-top: 12px;
   }
 
   .qrCard {
@@ -289,53 +387,10 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   }
 
   .playerRow {
-    grid-template-columns: 34px minmax(0,1fr) auto;
-  }
-}
-
-/* ===========================
-   UI foundation polish
-   =========================== */
-body {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(31, 49, 78, .75) 0%, transparent 34%),
-    linear-gradient(180deg, #0b0f17 0%, #070a10 100%);
-}
-
-.card {
-  box-shadow: 0 18px 50px rgba(0, 0, 0, .16);
-}
-
-.primaryButton,
-.secondaryButton {
-  transition: transform .12s ease, opacity .12s ease, border-color .12s ease, background .12s ease;
-}
-
-.primaryButton:not(:disabled):hover {
-  transform: translateY(-1px);
-}
-
-.secondaryButton:not(:disabled):hover {
-  border-color: #4a5870;
-  background: #263247;
-}
-
-.textInput::placeholder {
-  color: #637086;
-}
-
-.playerIdentity span {
-  margin-top: 3px;
-  color: var(--muted);
-  font-size: 12px;
-}
-
-@media (max-width: 560px) {
-  .pageShell {
-    width: min(100% - 18px, 760px);
+    grid-template-columns: 34px minmax(0, 1fr) auto;
   }
 
-  .card {
-    padding: 16px;
+  .playerRow .scoreNumber {
+    grid-column: 2 / 4;
   }
 }
