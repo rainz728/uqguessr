@@ -22,7 +22,7 @@ export default function HomeScreen({ connected, error, send }) {
         <div className="minecraftLogoWrap">
           <h1 className="minecraftLogo">UQGUESSR</h1>
           <span className="minecraftSubtitle">ST LUCIA EDITION</span>
-          <span className="minecraftSplash">Campus mode!</span>
+          <span className="minecraftSplash">Don&apos;t forget to shower!</span>
         </div>
 
         <div className="minecraftJoinFields">
@@ -32,7 +32,7 @@ export default function HomeScreen({ connected, error, send }) {
             className="textInput minecraftInput"
             value={nickname}
             maxLength={18}
-            placeholder="Enter username"
+            placeholder="matt_martin_06"
             autoComplete="off"
             onChange={(e) => setNickname(e.target.value)}
           />
@@ -90,8 +90,8 @@ export default function HomeScreen({ connected, error, send }) {
       </section>
 
       <footer className="minecraftFooter">
-        <span>UQGuessr Hackathon Build</span>
-        <span>{connected ? "Connected" : "Connecting..."}</span>
+        <span>A Pez Boys creation</span>
+        <span>Nick · Rain · Christian · Miles</span>
       </footer>
     </main>
   );

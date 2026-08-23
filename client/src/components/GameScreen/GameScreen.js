@@ -140,15 +140,26 @@ export default function GameScreen({ game, clientId, send }) {
         />
 
         <section className="finalHero">
-          <span className="eyebrow">GAME COMPLETE</span>
-          <h2>
-            {winner ? `${winner.nickname} takes the win.` : "Game complete."}
-          </h2>
-          <p className="muted">
-            {winner
-              ? `${winner.totalScore.toLocaleString()} points across ${game.totalRounds} rounds.`
-              : "All rounds are complete."}
-          </p>
+          <div className="finalWinnerCopy">
+            <span className="eyebrow">GAME COMPLETE</span>
+            <h2>
+              {winner ? `${winner.nickname} takes the win.` : "Game complete."}
+            </h2>
+            <p className="muted">
+              {winner
+                ? `${winner.totalScore.toLocaleString()} points across ${game.totalRounds} rounds.`
+                : "All rounds are complete."}
+            </p>
+          </div>
+
+          <div className="deansCommendation">
+            <span>ACHIEVEMENT UNLOCKED!</span>
+            <strong>
+              {winner
+                ? `${winner.nickname} has received a Dean's Commendation!`
+                : "Dean's Commendation"}
+            </strong>
+          </div>
         </section>
 
         <section className="card finalResultsCard">

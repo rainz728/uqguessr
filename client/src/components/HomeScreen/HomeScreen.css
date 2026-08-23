@@ -122,3 +122,94 @@
     font-size: 7px;
   }
 }
+
+
+/* Final presentation polish */
+.minecraftSplash {
+  top: 62px;
+  right: 8px;
+  max-width: 290px;
+  text-align: center;
+  line-height: 1.45;
+}
+
+.minecraftFooter {
+  color: #f1f1f1;
+}
+
+@media (max-width: 650px) {
+  .minecraftMenuPage {
+    min-height: 100svh;
+    padding: 42px 14px 96px;
+    overflow-x: hidden;
+  }
+
+  .minecraftMenuCenter {
+    width: 100%;
+  }
+
+  .minecraftLogoWrap {
+    margin-bottom: 34px;
+  }
+
+  .minecraftLogo {
+    font-size: clamp(28px, 10.5vw, 45px);
+  }
+
+  .minecraftSubtitle {
+    margin-top: 11px;
+    font-size: 7px;
+  }
+
+  .minecraftSplash {
+    position: static;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin: 14px auto 0;
+    font-size: 8px;
+    line-height: 1.5;
+    transform: rotate(-7deg);
+  }
+
+  .minecraftJoinFields,
+  .minecraftMenuButtons {
+    width: 100%;
+  }
+
+  .minecraftFooter {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    gap: 10px;
+    font-size: 6px;
+    line-height: 1.55;
+  }
+
+  .minecraftFooter span:last-child {
+    text-align: right;
+  }
+}
+
+@media (max-width: 390px) {
+  .minecraftMenuPage {
+    padding-top: 28px;
+  }
+
+  .minecraftLogo {
+    font-size: 27px;
+  }
+
+  .minecraftFooter {
+    position: static;
+    width: 100%;
+    margin-top: 28px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .minecraftFooter span:last-child {
+    text-align: center;
+  }
+}

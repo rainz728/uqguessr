@@ -404,3 +404,135 @@
     font-size: 27px;
   }
 }
+
+
+/* Final-results achievement */
+.finalHero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+}
+
+.finalWinnerCopy {
+  min-width: 0;
+}
+
+.deansCommendation {
+  flex: 0 0 270px;
+  padding: 12px 14px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #e0e0e0;
+  border-left-color: #e0e0e0;
+  background: linear-gradient(#767676, #4d4d4d);
+  text-align: center;
+  text-shadow: 2px 2px 0 #111;
+}
+
+.deansCommendation span {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--mc-yellow);
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.deansCommendation strong {
+  display: block;
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.65;
+}
+
+/* Final mobile layout pass */
+@media (max-width: 700px) {
+  .gamePage,
+  .finalPage {
+    width: min(100% - 14px, 1380px);
+  }
+
+  .roundTopbar {
+    gap: 12px;
+  }
+
+  .roundMetrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roundMetrics > div,
+  .roundMetrics button {
+    min-height: 44px;
+  }
+
+  .streetSection,
+  .roundSidebar,
+  .mapResultCard,
+  .roundScorePanel {
+    min-width: 0;
+    padding: 9px;
+  }
+
+  .streetViewWrap {
+    height: min(56vh, 390px);
+    min-height: 300px;
+  }
+
+  .guessPanel {
+    min-width: 0;
+    padding: 9px;
+  }
+
+  .mapShell,
+  .revealMapShell {
+    height: min(52vh, 390px);
+    min-height: 300px;
+  }
+
+  .scoreCard {
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .scoreIdentity strong,
+  .scoreIdentity span {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .finalHero {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .deansCommendation {
+    flex-basis: auto;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media (max-width: 390px) {
+  .roundMetrics {
+    grid-template-columns: 1fr;
+  }
+
+  .streetViewWrap {
+    min-height: 270px;
+    height: 48vh;
+  }
+
+  .mapShell,
+  .revealMapShell {
+    min-height: 285px;
+    height: 46vh;
+  }
+
+  .finalHero h2 {
+    font-size: 24px;
+  }
+
+  .deansCommendation strong {
+    font-size: 9px;
+  }
+}
