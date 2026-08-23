@@ -5,9 +5,6 @@ import "../components/GameScreen/GameScreen.css";
 import "../components/HomeScreen/HomeScreen.css";
 import "../components/Lobby/Lobby.css";
 
-export default function App({
-  Component,
-  pageProps,
-}) {
+export default function App({ Component, pageProps }) {
   return <Component {...pageProps} />;
 }

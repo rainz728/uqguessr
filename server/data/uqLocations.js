@@ -1,35 +1,31 @@
 // Custom UQGuessr locations.
 
-
 // panoramaUrl points to a file inside public/panoramas/.
 // lat/lng are the TRUE answer coordinates used for scoring.
 // Replace each placeholder coordinate with the exact point you choose.
 
-
 const uqLocations = [
   {
     id: "uq-01",
-    name: "Test Panorama",
+    name: "Biological science Library",
     panoramaUrl: "/panoramas/scene1.jpg",
-    lat: -27.4976,
-    lng: 153.0132,
+    lat: -27.49696591812435,
+    lng: 153.0113918986927,
     heading: 0,
     pitch: 0,
     difficulty: 1,
   },
 
-
   {
     id: "uq-02",
     name: "Vending Machine across from UQ Centre",
     panoramaUrl: "/panoramas/scene2.jpg",
-    lat: -27.496058136105546,
-    lng: 153.0160226846608,
+    lat: -27.498531663476584,
+    lng: 153.01381796779154,
     heading: 0,
     pitch: 0,
     difficulty: 2,
   },
-
 
   {
     id: "uq-03",
@@ -42,7 +38,6 @@ const uqLocations = [
     difficulty: 2,
   },
 
-
   {
     id: "uq-04",
     name: "Cafe Nano",
@@ -53,7 +48,6 @@ const uqLocations = [
     pitch: 0,
     difficulty: 3,
   },
-
 
   {
     id: "uq-05",
@@ -66,7 +60,6 @@ const uqLocations = [
     difficulty: 3,
   },
 
-
   {
     id: "uq-06",
     name: "Sir James Foot Kitchen",
@@ -77,7 +70,6 @@ const uqLocations = [
     pitch: 0,
     difficulty: 3,
   },
-
 
   {
     id: "uq-07",
@@ -90,7 +82,6 @@ const uqLocations = [
     difficulty: 4,
   },
 
-
   {
     id: "uq-08",
     name: "UQ Lakes Elevator",
@@ -101,7 +92,6 @@ const uqLocations = [
     pitch: 0,
     difficulty: 4,
   },
-
 
   {
     id: "uq-09",
@@ -114,10 +104,9 @@ const uqLocations = [
     difficulty: 4,
   },
 
-
   {
     id: "uq-10",
-    name: "Uq Sport Toilets",
+    name: "UQ Fields Toilets",
     panoramaUrl: "/panoramas/scene10.jpg",
     lat: -27.496624383673556,
     lng: 153.01604093536014,
@@ -125,7 +114,6 @@ const uqLocations = [
     pitch: 0,
     difficulty: 5,
   },
-
 
   {
     id: "uq-11",
@@ -138,7 +126,6 @@ const uqLocations = [
     difficulty: 5,
   },
 
-
   {
     id: "uq-12",
     name: "Nearby UQ Pools",
@@ -150,18 +137,16 @@ const uqLocations = [
     difficulty: 5,
   },
 
-
   {
     id: "uq-13",
     name: "BEL courtyard",
     panoramaUrl: "/panoramas/scene13.jpg",
-    lat: -27.494602682925912,
-    lng: 153.01619433888104,
+    lat: -27.49478630603342,
+    lng: 153.0142974080426,
     heading: 0,
     pitch: 0,
     difficulty: 5,
   },
-
 
   {
     id: "uq-14",
@@ -174,7 +159,6 @@ const uqLocations = [
     difficulty: 5,
   },
 
-
   {
     id: "uq-15",
     name: "Front of Mod West",
@@ -186,7 +170,6 @@ const uqLocations = [
     difficulty: 5,
   },
 
-
   {
     id: "uq-16",
     name: "Bamboo",
@@ -197,7 +180,39 @@ const uqLocations = [
     pitch: 0,
     difficulty: 5,
   },
-];
 
+{
+  id: "uq-17",
+  name: "Andrew Liveris Disabled Toilets",
+  panoramaUrl: "/panoramas/scene17.jpg",
+  lat: -27.499290348656807,
+  lng: 153.01273399840372,
+  heading: 0,
+  pitch: 0,
+  difficulty: 5,
+},
+
+{
+  id: "uq-18",
+  name: "Hawken Lecture Toilet",
+  panoramaUrl: "/panoramas/scene18.jpg",
+  lat: -27.499709784392827,
+  lng: 153.01365082683412,
+  heading: 0,
+  pitch: 0,
+  difficulty: 5,
+},
+
+{
+  id: "uq-19",
+  name: "Law Library Toilet",
+  panoramaUrl: "/panoramas/scene19.jpg",
+  lat: -27.49695003682493,
+  lng: 153.012570825279,
+  heading: 0,
+  pitch: 0,
+  difficulty: 5,
+},
+];
 
 export default uqLocations;
