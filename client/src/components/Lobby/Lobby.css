@@ -1,50 +1,189 @@
-/* Lobby grid layout */
+.lobbyPage {
+  padding-top: 38px;
+}
+
+.lobbyHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 30px;
+}
+
+.lobbyHeader h1 {
+  margin: 7px 0 8px;
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 1;
+  letter-spacing: -.045em;
+}
+
+.lobbyHeader p {
+  max-width: 650px;
+  margin: 0;
+}
+
+.lobbyPlayerCount {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  flex: 0 0 auto;
+  padding: 12px 15px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: var(--panel);
+}
+
+.lobbyPlayerCount strong {
+  font-size: 24px;
+}
+
+.lobbyPlayerCount span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .lobbyGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr);
+  gap: 18px;
   align-items: stretch;
 }
 
-/* Player round status (used in lobby list) */
+.lobbyJoinCard,
+.lobbyPlayersCard {
+  min-height: 420px;
+}
+
+.lobbyPlayersCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.playerCapacity {
+  padding: 7px 9px;
+  border-radius: 9px;
+  border: 1px solid var(--border);
+  background: var(--panel-2);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.qrCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 26px;
+  min-height: 280px;
+}
+
+.qrCodeFrame {
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  border-radius: 18px;
+  background: white;
+}
+
+.qrCodeFrame svg {
+  display: block;
+  padding: 0;
+  border-radius: 0;
+}
+
+.qrDetails {
+  min-width: 0;
+}
+
+.qrDetails p {
+  max-width: 330px;
+}
+
+.roomCode {
+  margin: 7px 0 10px;
+  font-size: clamp(42px, 6vw, 62px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .11em;
+}
+
 .playerRoundStatus {
   color: var(--muted);
   font-size: 12px;
 }
 
-/* QR join card */
-.qrCard {
+.playerRoundStatus.submitted {
+  color: #83ddb2;
+}
+
+.emptyPlayerState {
   display: flex;
+  min-height: 150px;
+  flex-direction: column;
   align-items: center;
-  gap: 24px;
-  min-height: 210px;
-}
-
-.qrCard svg {
-  background: white;
+  justify-content: center;
+  gap: 5px;
+  padding: 24px;
+  border: 1px dashed var(--border);
   border-radius: 14px;
-  padding: 8px;
-  flex: 0 0 auto;
+  text-align: center;
 }
 
-.roomCode {
-  margin-top: 5px;
-  font-size: clamp(42px, 7vw, 68px);
-  font-weight: 950;
-  letter-spacing: .12em;
-}
-
-/* Waiting chip (used in lobby + reveal) */
-.waitingChip {
-  border: 1px solid var(--border);
-  background: #161e2b;
-  padding: 10px 14px;
-  border-radius: 999px;
-  color: #c6d0df;
+.emptyPlayerState span {
+  color: var(--muted);
   font-size: 13px;
 }
 
-/* Responsive */
-@media (max-width: 560px) {
-  .qrCard {
-    flex-direction: column;
+.lobbyActions {
+  margin-top: auto;
+  padding-top: 22px;
+}
+
+.lobbyActions .primaryButton {
+  width: 100%;
+}
+
+.waitingChip {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-2);
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+
+@media (max-width: 900px) {
+  .lobbyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .lobbyJoinCard,
+  .lobbyPlayersCard {
+    min-height: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .lobbyHeader {
     align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .lobbyPlayerCount {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .qrCard {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .qrDetails p {
+    margin-left: auto;
+    margin-right: auto;
   }
 }

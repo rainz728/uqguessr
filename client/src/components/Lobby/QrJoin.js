@@ -12,11 +12,15 @@ export default function QrJoin({ code }) {
 
   return (
     <div className="qrCard">
-      {url ? <QRCodeSVG value={url} size={150} level="M" includeMargin /> : null}
-      <div>
+      <div className="qrCodeFrame">
+        {url ? <QRCodeSVG value={url} size={166} level="M" includeMargin /> : null}
+      </div>
+      <div className="qrDetails">
         <span className="eyebrow">ROOM CODE</span>
         <div className="roomCode">{code}</div>
-        <p className="muted">Scan the QR code or enter the code on another phone.</p>
+        <p className="muted">
+          Scan the QR code on your phone, or open UQGuessr and enter this code manually.
+        </p>
       </div>
     </div>
   );
