@@ -1,189 +1,125 @@
+/* ===========================
+   Minecraft lobby
+   =========================== */
+
 .lobbyPage {
-  padding-top: 38px;
+  padding-top: 24px;
+}
+
+.minecraftTopbar {
+  margin-bottom: 22px;
+  padding: 15px 17px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #aaa;
+  border-left-color: #aaa;
+  background: rgba(57, 57, 57, .86);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, .34);
 }
 
 .lobbyHeader {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  margin-bottom: 30px;
+  gap: 22px;
 }
 
 .lobbyHeader h1 {
-  margin: 7px 0 8px;
-  font-size: clamp(40px, 6vw, 68px);
-  line-height: 1;
-  letter-spacing: -.045em;
+  margin: 7px 0;
+  font-size: clamp(24px, 4vw, 38px);
+  text-shadow: 3px 3px 0 #222;
 }
 
 .lobbyHeader p {
-  max-width: 650px;
+  max-width: 680px;
   margin: 0;
 }
 
-.lobbyPlayerCount {
-  display: flex;
-  align-items: baseline;
-  gap: 7px;
-  flex: 0 0 auto;
-  padding: 12px 15px;
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  background: var(--panel);
+.lobbyRoomBadge {
+  min-width: 150px;
+  padding: 11px 13px;
+  border: 2px solid #1e1e1e;
+  background: rgba(0, 0, 0, .5);
+  text-align: center;
 }
 
-.lobbyPlayerCount strong {
-  font-size: 24px;
+.lobbyRoomBadge span,
+.lobbyRoomBadge strong {
+  display: block;
 }
 
-.lobbyPlayerCount span {
-  color: var(--muted);
-  font-size: 12px;
+.lobbyRoomBadge span {
+  margin-bottom: 6px;
+  color: var(--mc-yellow);
+  font-size: 8px;
+}
+
+.lobbyRoomBadge strong {
+  color: #fff;
+  font-size: 18px;
+  letter-spacing: .12em;
+  text-shadow: 2px 2px 0 #111;
 }
 
 .lobbyGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, .9fr);
-  gap: 18px;
-  align-items: stretch;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 0;
+  overflow: hidden;
 }
 
 .lobbyJoinCard,
 .lobbyPlayersCard {
-  min-height: 420px;
+  padding: 20px;
+}
+
+.lobbyJoinCard {
+  border-right: 2px solid #2a2a2a;
 }
 
 .lobbyPlayersCard {
-  display: flex;
-  flex-direction: column;
-}
-
-.playerCapacity {
-  padding: 7px 9px;
-  border-radius: 9px;
-  border: 1px solid var(--border);
-  background: var(--panel-2);
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.qrCard {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: center;
-  gap: 26px;
-  min-height: 280px;
-}
-
-.qrCodeFrame {
-  display: grid;
-  place-items: center;
-  padding: 8px;
-  border-radius: 18px;
-  background: white;
-}
-
-.qrCodeFrame svg {
-  display: block;
-  padding: 0;
-  border-radius: 0;
-}
-
-.qrDetails {
-  min-width: 0;
-}
-
-.qrDetails p {
-  max-width: 330px;
-}
-
-.roomCode {
-  margin: 7px 0 10px;
-  font-size: clamp(42px, 6vw, 62px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: .11em;
-}
-
-.playerRoundStatus {
-  color: var(--muted);
-  font-size: 12px;
-}
-
-.playerRoundStatus.submitted {
-  color: #83ddb2;
-}
-
-.emptyPlayerState {
-  display: flex;
-  min-height: 150px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  padding: 24px;
-  border: 1px dashed var(--border);
-  border-radius: 14px;
-  text-align: center;
-}
-
-.emptyPlayerState span {
-  color: var(--muted);
-  font-size: 13px;
+  background: rgba(0, 0, 0, .12);
 }
 
 .lobbyActions {
-  margin-top: auto;
-  padding-top: 22px;
+  min-height: 48px;
+  align-items: center;
 }
 
-.lobbyActions .primaryButton {
-  width: 100%;
+.lobbyActions .minecraftButton {
+  min-width: 190px;
 }
 
-.waitingChip {
-  width: 100%;
-  padding: 13px 15px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--panel-2);
-  color: var(--muted);
-  text-align: center;
-  font-size: 13px;
-}
-
-@media (max-width: 900px) {
-  .lobbyGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .lobbyJoinCard,
-  .lobbyPlayersCard {
-    min-height: 0;
-  }
-}
-
-@media (max-width: 620px) {
+@media (max-width: 850px) {
   .lobbyHeader {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .lobbyPlayerCount {
+  .lobbyRoomBadge {
     width: 100%;
-    justify-content: center;
   }
 
-  .qrCard {
+  .lobbyGrid {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
   }
 
-  .qrDetails p {
-    margin-left: auto;
-    margin-right: auto;
+  .lobbyJoinCard {
+    border-right: 0;
+    border-bottom: 2px solid #2a2a2a;
+  }
+}
+
+@media (max-width: 600px) {
+  .lobbyJoinCard,
+  .lobbyPlayersCard {
+    padding: 13px;
+  }
+
+  .lobbyHeader h1 {
+    font-size: 24px;
+  }
+
+  .lobbyActions .minecraftButton {
+    width: 100%;
   }
 }

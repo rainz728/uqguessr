@@ -1,79 +1,144 @@
-/* Main game layout */
+/* ===========================
+   Minecraft game / results UI
+   =========================== */
+
 .gamePage {
-  width: min(1500px, calc(100% - 24px));
+  width: min(1380px, calc(100% - 28px));
   margin: 0 auto;
-  padding: 18px 0 40px;
+  padding-top: 18px;
 }
 
-/* Top bar */
 .roundTopbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 18px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #bcbcbc;
+  border-left-color: #bcbcbc;
+  background: rgba(64, 64, 64, .88);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, .35);
 }
 
-.gameTopbar {
-  min-height: 64px;
-}
-
-/* Round metrics */
-.roundMetrics {
+.gameIdentity {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.gameIdentity h1 {
+  margin: 6px 0 0;
+  color: #fff;
+  font-size: clamp(17px, 2.2vw, 25px);
+  line-height: 1.25;
+  text-shadow: 3px 3px 0 #222;
+}
+
+.gameBrandMark {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 3px solid #1e1e1e;
+  border-top-color: #c5c5c5;
+  border-left-color: #c5c5c5;
+  background: linear-gradient(#767676, #4f4f4f);
+  color: #fff;
+  font-size: 13px;
+  text-shadow: 2px 2px 0 #222;
+}
+
+.roundMetrics {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .roundMetrics > div {
-  display: flex;
-  flex-direction: column;
   min-width: 88px;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgba(17,23,36,.78);
+  padding: 8px 10px;
+  border: 2px solid #1e1e1e;
+  background: rgba(0, 0, 0, .46);
+  text-align: center;
+}
+
+.roundMetrics strong,
+.roundMetrics span {
+  display: block;
 }
 
 .roundMetrics strong {
-  font-size: 21px;
+  color: #fff;
+  font-size: 16px;
+  text-shadow: 2px 2px 0 #111;
 }
 
 .roundMetrics span {
-  color: var(--muted);
-  font-size: 11px;
+  margin-top: 5px;
+  color: #ddd;
+  font-size: 7px;
   text-transform: uppercase;
-  letter-spacing: .08em;
 }
 
-/* Player/host grid */
-.playerRoundGrid {
+.roundMetrics .urgentMetric strong {
+  color: #ff9f9f;
+}
+
+.roundIntroLine,
+.revealHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 2px 16px;
+  padding: 12px 14px;
+  background: rgba(0, 0, 0, .36);
+}
+
+.roundIntroLine h2,
+.revealHeading h2 {
+  margin: 7px 0 0;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 31px);
+  line-height: 1.3;
+  text-shadow: 3px 3px 0 #111;
+}
+
+.roundIntroLine p,
+.revealHeading p {
+  max-width: 470px;
+  margin: 0;
+  text-align: right;
+}
+
+.playerRoundGrid,
+.gameRevealGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(340px, .7fr);
+  grid-template-columns: minmax(0, 1.55fr) minmax(300px, .45fr);
   gap: 14px;
-  min-height: 680px;
+  align-items: start;
 }
 
-.hostRoundGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(300px, .5fr);
-  gap: 14px;
-  min-height: 680px;
-}
-
-/* StreetView */
-.streetSection {
-  min-width: 0;
+.streetSection,
+.roundSidebar,
+.mapResultCard,
+.roundScorePanel {
+  padding: 12px;
 }
 
 .streetViewWrap {
   position: relative;
   width: 100%;
-  height: 680px;
+  height: 620px;
   overflow: hidden;
-  border-radius: 22px;
-  border: 1px solid var(--border);
-  background: #090d15;
+  border: 3px solid #1d1d1d;
+  background: #080808;
 }
 
 .streetView {
@@ -81,32 +146,52 @@
   height: 100%;
 }
 
+.streetViewWrap button {
+  border: 3px solid #1d1d1d !important;
+  border-top-color: #ddd !important;
+  border-left-color: #ddd !important;
+  border-radius: 0 !important;
+  background: linear-gradient(#aaa, #747474) !important;
+  color: #fff !important;
+  font-family: var(--mc-font) !important;
+  text-shadow: 2px 2px 0 #333;
+}
+
 .streetViewMessage {
   position: absolute;
   inset: 0;
   display: grid;
   place-items: center;
-  padding: 32px;
+  padding: 30px;
+  background: rgba(0, 0, 0, .72);
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.6;
   text-align: center;
-  color: var(--muted);
-  background: #0c111b;
+  text-shadow: 2px 2px 0 #111;
 }
 
-/* Guess panel */
+.compactPanelHeading {
+  margin-bottom: 12px;
+}
+
+.guessSection {
+  margin-top: 14px;
+}
+
 .guessPanel {
-  background: rgba(17,23,36,.92);
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  padding: 16px;
+  padding: 14px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #aaa;
+  border-left-color: #aaa;
+  background: rgba(62, 62, 62, .88);
 }
 
-/* Map shell */
 .mapShell {
+  height: 520px;
   overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  height: 575px;
-  background: #0b1018;
+  border: 3px solid #1d1d1d;
+  background: #111;
 }
 
 .leafletMap {
@@ -114,117 +199,208 @@
   height: 100%;
 }
 
-/* Reveal screen */
-.revealMapShell {
-  height: 560px;
+.mobileGuessAction {
+  display: none;
 }
 
-.mapResultCard {
-  padding: 14px;
+.gameRevealGrid {
+  grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr);
+}
+
+.revealMapShell {
+  height: 520px;
 }
 
 .roundScores {
   display: grid;
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
 }
 
 .scoreCard {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
   align-items: center;
-  padding: 14px;
-  border: 1px solid #263246;
-  background: #0d1320;
-  border-radius: 14px;
+  gap: 10px;
+  min-height: 58px;
+  padding: 9px 10px;
+  border: 2px solid #282828;
+  border-top-color: #777;
+  border-left-color: #777;
+  background: rgba(25, 25, 25, .7);
 }
 
-.scoreCard > div {
+.scoreRank {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 2px solid #1d1d1d;
+  background: #666;
+  color: #fff;
+  font-size: 9px;
+  text-shadow: 1px 1px 0 #111;
+}
+
+.scoreIdentity {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
+  min-width: 0;
 }
 
-.scoreCard span {
-  color: var(--muted);
-  font-size: 13px;
+.scoreIdentity strong {
+  overflow: hidden;
+  color: #fff;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 2px 2px 0 #111;
+}
+
+.scoreIdentity span {
+  color: #ccc;
+  font-size: 7px;
 }
 
 .scoreCard b {
-  font-size: 20px;
+  color: #8be54f;
+  font-size: 10px;
+  white-space: nowrap;
+  text-shadow: 2px 2px 0 #17340d;
 }
 
-/* Final screen */
 .finalPage {
-  padding-top: 64px;
+  width: min(1000px, calc(100% - 28px));
+  margin: 0 auto;
+  padding-top: 22px;
 }
 
 .finalHero {
-  max-width: 820px;
+  margin: 22px 0 18px;
+  padding: 24px;
+  border: 3px solid #1d1d1d;
+  border-top-color: #aaa;
+  border-left-color: #aaa;
+  background: rgba(55, 55, 55, .9);
+  box-shadow: 0 5px 0 rgba(0, 0, 0, .34);
+}
+
+.finalHero h2 {
+  margin: 9px 0;
+  color: #fff;
+  font-size: clamp(25px, 4vw, 42px);
+  line-height: 1.25;
+  text-shadow: 4px 4px 0 #222;
+}
+
+.finalHero p {
+  margin: 0;
 }
 
 .finalResultsCard {
-  max-width: 760px;
+  max-width: 820px;
 }
 
-.finalHint {
-  margin: 18px 0 0;
-}
-
-.finalActions {
-  padding-top: 4px;
-  border-top: 1px solid var(--border);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .roundTopbar {
+@media (max-width: 980px) {
+  .roundTopbar,
+  .roundIntroLine,
+  .revealHeading {
     align-items: flex-start;
     flex-direction: column;
   }
 
   .roundMetrics {
     width: 100%;
-    flex-wrap: wrap;
+    justify-content: flex-start;
   }
 
-  .roundMetrics > div {
-    flex: 1 1 110px;
-  }
-
-  .streetViewWrap {
-    height: 440px;
-  }
-
-  .mapShell {
-    height: 420px;
-  }
-
-  .mobileGuessAction {
-    display: block;
-    margin-top: 12px;
+  .roundIntroLine p,
+  .revealHeading p {
+    max-width: 650px;
+    text-align: left;
   }
 
   .playerRoundGrid,
-  .hostRoundGrid {
-    min-height: 0;
+  .gameRevealGrid {
     grid-template-columns: 1fr;
+  }
+
+  .streetViewWrap {
+    height: 490px;
+  }
+
+  .mapShell,
+  .revealMapShell {
+    height: 450px;
   }
 }
 
-@media (max-width: 560px) {
-  .streetViewWrap {
-    height: 360px;
-    border-radius: 16px;
+@media (max-width: 620px) {
+  .gamePage {
+    width: min(100% - 16px, 1380px);
+    padding-top: 8px;
   }
 
-  .guessPanel {
+  .roundTopbar {
+    margin-bottom: 14px;
     padding: 10px;
-    border-radius: 16px;
   }
 
-  .mapShell {
-    height: 360px;
+  .gameBrandMark {
+    width: 38px;
+    height: 38px;
+    font-size: 10px;
+  }
+
+  .gameIdentity h1 {
+    font-size: 17px;
+  }
+
+  .roundMetrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .roundMetrics > div,
+  .roundMetrics button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .roundIntroLine,
+  .revealHeading {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .roundIntroLine h2,
+  .revealHeading h2 {
+    font-size: 22px;
+  }
+
+  .streetViewWrap {
+    height: 350px;
+  }
+
+  .mapShell,
+  .revealMapShell {
+    height: 355px;
+  }
+
+  .scoreCard {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .scoreCard b {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .finalHero {
+    padding: 18px;
+  }
+
+  .finalHero h2 {
+    font-size: 27px;
   }
 }

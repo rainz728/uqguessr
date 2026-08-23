@@ -8,124 +8,91 @@ export default function HomeScreen({ connected, error, send }) {
 
   useEffect(() => {
     if (!router.isReady) return;
-    const incoming = typeof router.query.join === "string" ? router.query.join : "";
-    if (incoming) setCode(incoming.toUpperCase().slice(0, 4));
+    const incoming =
+      typeof router.query.join === "string" ? router.query.join : "";
+
+    if (incoming) {
+      setCode(incoming.toUpperCase().slice(0, 4));
+    }
   }, [router.isReady, router.query.join]);
 
   return (
-    <main className="pageShell homePage">
-      <header className="appHeader">
-        <div className="brandLockup">
-          <div className="brandMark">UQ</div>
-          <div>
-            <strong>UQGuessr</strong>
-            <span>Multiplayer campus guessing game</span>
-          </div>
+    <main className="minecraftMenuPage">
+      <section className="minecraftMenuCenter">
+        <div className="minecraftLogoWrap">
+          <h1 className="minecraftLogo">UQGUESSR</h1>
+          <span className="minecraftSubtitle">ST LUCIA EDITION</span>
+          <span className="minecraftSplash">Campus mode!</span>
         </div>
 
-        <div className="headerConnection">
-          <span className={connected ? "statusDot online" : "statusDot"} />
-          {connected ? "Server connected" : "Connecting…"}
-        </div>
-      </header>
+        <div className="minecraftJoinFields">
+          <label htmlFor="nickname">Username</label>
+          <input
+            id="nickname"
+            className="textInput minecraftInput"
+            value={nickname}
+            maxLength={18}
+            placeholder="Enter username"
+            autoComplete="off"
+            onChange={(e) => setNickname(e.target.value)}
+          />
 
-      <section className="homeHero">
-        <div>
-          <span className="eyebrow">UQ COMPUTING SOCIETY HACKATHON</span>
-          <h1>How well do you know UQ?</h1>
-          <p>
-            Explore a 360° location somewhere around St Lucia, place your guess on
-            the campus map, and compete against your friends across five rounds.
-          </p>
+          <label htmlFor="room-code">Room Code</label>
+          <input
+            id="room-code"
+            className="textInput minecraftInput minecraftCodeInput"
+            value={code}
+            maxLength={4}
+            placeholder="AB12"
+            autoComplete="off"
+            onChange={(e) =>
+              setCode(
+                e.target.value
+                  .toUpperCase()
+                  .replace(/[^A-Z0-9]/g, "")
+                  .slice(0, 4)
+              )
+            }
+          />
         </div>
 
-        <div className="gameSummary" aria-label="Game format">
-          <div>
-            <strong>5</strong>
-            <span>Rounds</span>
-          </div>
-          <div>
-            <strong>5</strong>
-            <span>Players max</span>
-          </div>
-          <div>
-            <strong>5000</strong>
-            <span>Points / round</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="entryGrid">
-        <article className="card entryCard">
-          <div className="entryCardTopline">
-            <span className="entryNumber">01</span>
-            <span className="eyebrow">HOST</span>
-          </div>
-          <h2>Create a room</h2>
-          <p className="muted">
-            Start a new game on the host laptop, then share the room code with
-            everyone playing.
-          </p>
+        <div className="minecraftMenuButtons">
           <button
-            className="primaryButton fullButton"
+            className="minecraftButton"
             type="button"
             disabled={!connected}
             onClick={() => send({ type: "create_game" })}
           >
-            Create game
+            Create Room
           </button>
-        </article>
-
-        <article className="card entryCard joinCard">
-          <div className="entryCardTopline">
-            <span className="entryNumber">02</span>
-            <span className="eyebrow">PLAYER</span>
-          </div>
-          <h2>Join a room</h2>
-
-          <div className="joinFields">
-            <label className="fieldLabel" htmlFor="room-code">Room code</label>
-            <input
-              id="room-code"
-              className="textInput codeInput"
-              value={code}
-              maxLength={4}
-              placeholder="AB12"
-              autoComplete="off"
-              onChange={(e) =>
-                setCode(
-                  e.target.value
-                    .toUpperCase()
-                    .replace(/[^A-Z0-9]/g, "")
-                    .slice(0, 4)
-                )
-              }
-            />
-
-            <label className="fieldLabel" htmlFor="nickname">Nickname</label>
-            <input
-              id="nickname"
-              className="textInput"
-              value={nickname}
-              maxLength={18}
-              placeholder="Nick"
-              autoComplete="off"
-              onChange={(e) => setNickname(e.target.value)}
-            />
-          </div>
 
           <button
-            className="secondaryButton fullButton"
+            className="minecraftButton"
             type="button"
-            disabled={!connected || code.length !== 4 || nickname.trim().length < 1}
-            onClick={() => send({ type: "join_game", code, nickname })}
+            disabled={
+              !connected ||
+              code.length !== 4 ||
+              nickname.trim().length < 1
+            }
+            onClick={() =>
+              send({
+                type: "join_game",
+                code,
+                nickname,
+              })
+            }
           >
-            Join game
+            Join Room
           </button>
-        </article>
+        </div>
+
+        {error ? <div className="errorBanner">{error}</div> : null}
       </section>
 
-      {error ? <div className="errorBanner">{error}</div> : null}
+      <footer className="minecraftFooter">
+        <span>UQGuessr Hackathon Build</span>
+        <span>{connected ? "Connected" : "Connecting..."}</span>
+      </footer>
     </main>
   );
 }
