@@ -394,3 +394,75 @@ button:disabled {
     grid-column: 2 / 4;
   }
 }
+
+
+/* Final form-field clarity */
+.textInput,
+.minecraftInput {
+  border: 2px solid #b8b8b8;
+  box-shadow:
+    0 0 0 2px #1f1f1f,
+    inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+
+.textInput::placeholder,
+.minecraftInput::placeholder {
+  color: rgba(255, 255, 255, .42);
+  opacity: 1;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, .45);
+}
+
+/* Final mobile player-list cleanup */
+@media (max-width: 700px) {
+  .card {
+    padding: 13px;
+  }
+
+  .panelHeading {
+    align-items: flex-start;
+  }
+
+  .roomActions {
+    justify-content: stretch;
+  }
+
+  .roomActions button {
+    width: 100%;
+  }
+
+  .playerRow {
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    min-width: 0;
+    padding: 8px;
+  }
+
+  .rankBubble {
+    width: 29px;
+    height: 29px;
+  }
+
+  .playerIdentity strong,
+  .scoreNumber {
+    overflow-wrap: anywhere;
+  }
+
+  .playerRoundStatus {
+    justify-self: end;
+  }
+
+  .scoreNumber {
+    grid-column: 2 / 4;
+    justify-self: start;
+  }
+
+  .roomCode {
+    max-width: 100%;
+    font-size: clamp(27px, 10vw, 42px);
+    overflow-wrap: anywhere;
+  }
+
+  .qrCard svg {
+    max-width: min(100%, 190px);
+    height: auto;
+  }
+}
