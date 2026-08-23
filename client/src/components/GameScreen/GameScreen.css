@@ -171,6 +171,184 @@
   text-shadow: 2px 2px 0 #111;
 }
 
+/* New panorama-viewer interface */
+
+.pixelStreetViewWrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.streetViewBrand {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 11px;
+  border: 2px solid #1d1d1d;
+  border-top-color: #bcbcbc;
+  border-left-color: #bcbcbc;
+  background: rgba(35, 35, 35, 0.82);
+  color: #fff;
+  font-size: 9px;
+  text-shadow: 2px 2px 0 #111;
+}
+
+.streetViewBrand b {
+  color: var(--accent);
+}
+
+.streetZoomControls {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.streetZoomControls button {
+  width: 48px;
+  height: 48px;
+  min-height: 0;
+  padding: 0;
+  border: 3px solid #1d1d1d;
+  border-top-color: #e0e0e0;
+  border-left-color: #e0e0e0;
+  border-right-color: #4a4a4a;
+  border-bottom-color: #4a4a4a;
+  border-radius: 0;
+  background: linear-gradient(#a5a5a5, #777);
+  color: #fff;
+  font-family: var(--mc-font);
+  font-size: 24px;
+  line-height: 1;
+  text-shadow: 2px 2px 0 #333;
+}
+
+.streetZoomControls button:hover {
+  outline: 2px solid #fff;
+  outline-offset: -6px;
+  filter: brightness(1.08);
+}
+
+.streetZoomControls button:active {
+  transform: translateY(2px);
+}
+
+.streetViewHint {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: 8px 10px;
+  border: 2px solid #1d1d1d;
+  background: rgba(0, 0, 0, 0.66);
+  color: #fff;
+  font-size: 8px;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 1px 1px 0 #111;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.pixelLoadingScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.pixelLoadingScreen strong {
+  color: #fff;
+  font-size: 10px;
+  line-height: 1.6;
+  text-shadow: 2px 2px 0 #111;
+}
+
+.pixelLoadingScreen small {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.loadingBlockStack {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 34px;
+}
+
+.loadingBlockStack span {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border: 2px solid #1d1d1d;
+  animation: campusChunkLoading 0.9s ease-in-out infinite alternate;
+}
+
+.loadingBlockStack span:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.loadingBlockStack span:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.loadingBlockStack span:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.loadingBlockStack span:nth-child(5) {
+  animation-delay: 0.48s;
+}
+
+@keyframes campusChunkLoading {
+  from {
+    transform: translateY(0);
+    background: var(--accent);
+  }
+
+  to {
+    transform: translateY(-12px);
+    background: var(--accent-2);
+  }
+}
+
+@media (max-width: 700px) {
+  .streetViewBrand {
+    top: 10px;
+    right: 10px;
+    padding: 7px 8px;
+    font-size: 7px;
+  }
+
+  .streetZoomControls {
+    top: 10px;
+    left: 10px;
+    gap: 6px;
+  }
+
+  .streetZoomControls button {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .streetViewHint {
+    bottom: 10px;
+    max-width: calc(100% - 24px);
+    font-size: 7px;
+    white-space: normal;
+  }
+}
+
 .compactPanelHeading {
   margin-bottom: 12px;
 }
