@@ -13,3 +13,11 @@ By:
 - Miles Denny
 - Nicholas Buckley
 - Rain Zhu
+----------
+## UQGuessr AI Usage
+
+This project was developed using assitance from 2 CHAT-GPT pro subcriptions ($30 monthly fee) and Microsoft Copilot. These AI were used throughout the development of UQGuessr providing assistance with debugging, coumentation and technicalities within the program.
+
+
+
+
