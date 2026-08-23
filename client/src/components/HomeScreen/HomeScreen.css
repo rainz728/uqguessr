@@ -1,45 +1,229 @@
-/* HomeScreen layout */
 .homePage {
-  padding-top: 64px;
+  padding-top: 24px;
 }
 
-/* Hero section */
-.hero {
-  max-width: 780px;
-  margin-bottom: 36px;
+.appHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--border);
 }
 
-.hero h1 {
-  margin: 8px 0 12px;
-  font-size: clamp(42px, 8vw, 84px);
-  line-height: .95;
-  letter-spacing: -.055em;
+.brandLockup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.hero p {
+.brandLockup > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.brandLockup strong {
+  font-size: 17px;
+  letter-spacing: -.02em;
+}
+
+.brandLockup span {
   color: var(--muted);
-  font-size: 19px;
-  line-height: 1.6;
-  max-width: 680px;
+  font-size: 12px;
 }
 
-/* Branding */
 .brandMark {
-  width: 58px;
-  height: 58px;
+  width: 44px;
+  height: 44px;
   display: grid;
   place-items: center;
   border: 1px solid var(--border);
-  border-radius: 16px;
-  margin-bottom: 22px;
+  border-radius: 12px;
   font-weight: 900;
   letter-spacing: -.04em;
-  background: linear-gradient(135deg, rgba(98,212,255,.2), rgba(138,125,255,.18));
+  background: var(--panel-2);
 }
 
-/* Responsive */
+.headerConnection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.homeHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr);
+  align-items: end;
+  gap: 52px;
+  padding: 74px 0 44px;
+}
+
+.homeHero h1 {
+  max-width: 800px;
+  margin: 10px 0 16px;
+  font-size: clamp(44px, 7vw, 78px);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.homeHero p {
+  max-width: 710px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.gameSummary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--border);
+}
+
+.gameSummary > div {
+  min-width: 0;
+  padding: 17px 12px;
+  background: var(--panel);
+  text-align: center;
+}
+
+.gameSummary strong,
+.gameSummary span {
+  display: block;
+}
+
+.gameSummary strong {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+
+.gameSummary span {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+.entryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 980px;
+}
+
+.entryCard {
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+}
+
+.entryCardTopline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.entryNumber {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  color: #cad4e2;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.entryCard h2 {
+  margin: 0 0 8px;
+}
+
+.entryCard .muted {
+  margin: 0;
+}
+
+.entryCard .fullButton {
+  margin-top: auto;
+}
+
+.joinFields {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 900px) {
+  .homeHero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-top: 48px;
+  }
+
+  .gameSummary {
+    max-width: 520px;
+  }
+
+  .entryGrid {
+    grid-template-columns: 1fr;
+    max-width: 680px;
+  }
+
+  .entryCard {
+    min-height: 0;
+  }
+
+  .entryCard .fullButton {
+    margin-top: 22px;
+  }
+}
+
 @media (max-width: 560px) {
-  .hero h1 {
-    font-size: 52px;
+  .appHeader {
+    align-items: flex-start;
+  }
+
+  .brandLockup span {
+    display: none;
+  }
+
+  .headerConnection {
+    padding-top: 7px;
+  }
+
+  .homeHero {
+    padding: 38px 0 28px;
+  }
+
+  .homeHero h1 {
+    font-size: 48px;
+  }
+
+  .homeHero p {
+    font-size: 16px;
+  }
+
+  .gameSummary {
+    grid-template-columns: 1fr;
+  }
+
+  .gameSummary > div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 13px 14px;
+    text-align: left;
+  }
+
+  .gameSummary span {
+    margin-top: 0;
   }
 }

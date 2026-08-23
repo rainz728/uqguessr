@@ -2,7 +2,10 @@ export default function PlayerList({ players = [], showRound = false }) {
   return (
     <div className="playerList">
       {players.length === 0 ? (
-        <p className="muted">Waiting for players…</p>
+        <div className="emptyPlayerState">
+          <strong>No players yet</strong>
+          <span>Waiting for someone to join the room.</span>
+        </div>
       ) : (
         players.map((p, index) => (
           <div className="playerRow" key={p.clientId}>
@@ -12,8 +15,8 @@ export default function PlayerList({ players = [], showRound = false }) {
               <span>{p.connected ? "Connected" : "Disconnected"}</span>
             </div>
             {showRound ? (
-              <div className="playerRoundStatus">
-                {p.hasGuessed ? "✓ Submitted" : "Waiting"}
+              <div className={`playerRoundStatus${p.hasGuessed ? " submitted" : ""}`}>
+                {p.hasGuessed ? "Submitted" : "Waiting"}
               </div>
             ) : null}
             <strong className="scoreNumber">{p.totalScore.toLocaleString()}</strong>

@@ -14,18 +14,58 @@ export default function HomeScreen({ connected, error, send }) {
 
   return (
     <main className="pageShell homePage">
-      <section className="hero">
-        <div className="brandMark">UQ</div>
-        <span className="eyebrow">UQ COMPUTING SOCIETY HACKATHON</span>
-        <h1>UQGuessr</h1>
-        <p>Explore a 360° campus location, drop your pin, then see who actually knows St Lucia.</p>
+      <header className="appHeader">
+        <div className="brandLockup">
+          <div className="brandMark">UQ</div>
+          <div>
+            <strong>UQGuessr</strong>
+            <span>Multiplayer campus guessing game</span>
+          </div>
+        </div>
+
+        <div className="headerConnection">
+          <span className={connected ? "statusDot online" : "statusDot"} />
+          {connected ? "Server connected" : "Connecting…"}
+        </div>
+      </header>
+
+      <section className="homeHero">
+        <div>
+          <span className="eyebrow">UQ COMPUTING SOCIETY HACKATHON</span>
+          <h1>How well do you know UQ?</h1>
+          <p>
+            Explore a 360° location somewhere around St Lucia, place your guess on
+            the campus map, and compete against your friends across five rounds.
+          </p>
+        </div>
+
+        <div className="gameSummary" aria-label="Game format">
+          <div>
+            <strong>5</strong>
+            <span>Rounds</span>
+          </div>
+          <div>
+            <strong>5</strong>
+            <span>Players max</span>
+          </div>
+          <div>
+            <strong>5000</strong>
+            <span>Points / round</span>
+          </div>
+        </div>
       </section>
 
-      <div className="twoCol entryGrid">
-        <section className="card">
-          <span className="eyebrow">PRESENTING?</span>
+      <section className="entryGrid">
+        <article className="card entryCard">
+          <div className="entryCardTopline">
+            <span className="entryNumber">01</span>
+            <span className="eyebrow">HOST</span>
+          </div>
           <h2>Create a room</h2>
-          <p className="muted">Use this on the laptop connected to the projector.</p>
+          <p className="muted">
+            Start a new game on the host laptop, then share the room code with
+            everyone playing.
+          </p>
           <button
             className="primaryButton fullButton"
             type="button"
@@ -34,31 +74,46 @@ export default function HomeScreen({ connected, error, send }) {
           >
             Create game
           </button>
-        </section>
+        </article>
 
-        <section className="card">
-          <span className="eyebrow">PLAYING?</span>
-          <h2>Join the audience game</h2>
-          <label className="fieldLabel" htmlFor="room-code">Room code</label>
-          <input
-            id="room-code"
-            className="textInput codeInput"
-            value={code}
-            maxLength={4}
-            placeholder="AB12"
-            onChange={(e) =>
-              setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 4))
-            }
-          />
-          <label className="fieldLabel" htmlFor="nickname">Nickname</label>
-          <input
-            id="nickname"
-            className="textInput"
-            value={nickname}
-            maxLength={18}
-            placeholder="Nick"
-            onChange={(e) => setNickname(e.target.value)}
-          />
+        <article className="card entryCard joinCard">
+          <div className="entryCardTopline">
+            <span className="entryNumber">02</span>
+            <span className="eyebrow">PLAYER</span>
+          </div>
+          <h2>Join a room</h2>
+
+          <div className="joinFields">
+            <label className="fieldLabel" htmlFor="room-code">Room code</label>
+            <input
+              id="room-code"
+              className="textInput codeInput"
+              value={code}
+              maxLength={4}
+              placeholder="AB12"
+              autoComplete="off"
+              onChange={(e) =>
+                setCode(
+                  e.target.value
+                    .toUpperCase()
+                    .replace(/[^A-Z0-9]/g, "")
+                    .slice(0, 4)
+                )
+              }
+            />
+
+            <label className="fieldLabel" htmlFor="nickname">Nickname</label>
+            <input
+              id="nickname"
+              className="textInput"
+              value={nickname}
+              maxLength={18}
+              placeholder="Nick"
+              autoComplete="off"
+              onChange={(e) => setNickname(e.target.value)}
+            />
+          </div>
+
           <button
             className="secondaryButton fullButton"
             type="button"
@@ -67,13 +122,8 @@ export default function HomeScreen({ connected, error, send }) {
           >
             Join game
           </button>
-        </section>
-      </div>
-
-      <div className="connectionBar">
-        <span className={connected ? "statusDot online" : "statusDot"} />
-        {connected ? "Multiplayer server connected" : "Connecting to multiplayer server…"}
-      </div>
+        </article>
+      </section>
 
       {error ? <div className="errorBanner">{error}</div> : null}
     </main>
